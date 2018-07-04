@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block header %}
 <script>
-    function delAdmin(admin_id) {
-        if(confirm("确定要删除管理员吗?")){
-
+    function delAdmin(m) {
+        if(confirm("确定要删除{{ m.admin_name }}管理员吗?")){
+            alert('hahha')
+{#            m_object.delete()#}
         }
-
     }
 </script>
 
@@ -55,7 +55,7 @@
         ></td>
             <td align="center"><a href="#" >权限设置</a></td>
             <td align="center">
-            <a href="/manager/" onclick="delAdmin({{ m.admin_id }})">删除</a></td>
+            <a href="/manager/" onclick="delAdmin({{ m }})">删除</a></td>
           </tr>
     {% endfor %}
 

@@ -157,7 +157,34 @@ def readerType_view(request):
 
 def parameter_view(request):
     uname = request.session['admin_name']
-    return render(request, 'parameter_modify.html', {'uname': uname})
+    if request.method == 'GET':
+        p_list = TransactionCard.objects.all()
+        if p_list:
+            p = p_list[0]
+            return render(request, 'parameter_modify.html', {'p': p, 'uname': uname})
+        # 如果为空，渲染初始表单页面
+
+        return render(request, 'parameter_modify.html', {'uname': uname})
+
+    # 增加或者修改参数信息
+    if request.method == 'POST':
+        # 如果为空，获取到一个空占位符
+        p_id = request.POST.get('p_id')
+        if len(p_id) == 0:
+            p_id = 0
+        p_id = int(p_id)
+        price = request.POST.get('cost', '')
+        indate = request.POST.get('validity', '')
+
+        p_obj = TransactionCard.objects.filter(transactioncard_id=p_id)
+        # 如果为空，直接创建一个对象
+        if not p_obj:
+            TransactionCard.objects.create(price = price,indate = indate)
+        # 如果已存在，只进行更新信息
+        else:
+            p_obj.update(price = price,indate = indate)
+
+        return HttpResponseRedirect('/parameterModify/')
 
 
 def bremind_view(request):
@@ -192,6 +219,7 @@ def bookQuery_view(request):
 
 def bookcase_view(request):
     uname = request.session['admin_name']
+
     return render(request, 'bookcase.html', {'uname': uname})
 
 
