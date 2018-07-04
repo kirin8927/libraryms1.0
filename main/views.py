@@ -50,7 +50,7 @@ def index_view2(request):
     pagelist = range(begin, end + 1)
 
 
-    return render(request, 'more.html', {'uname': uname, 'paginator': paginator, 't_per_page': t_per_page, 'pagelist': pagelist,'num':num,'size':size})
+    return render(request, 'more.html', {'uname': uname, 'paginator': paginator, 't_per_page': t_per_page, 'pagelist': pagelist})
 
 
 
@@ -91,7 +91,8 @@ def login_view(request):
 
 def manager_view(request):
     uname = request.session['admin_name']
-    return render(request, 'manager.html', {'uname': uname})
+    managerList = Admin.objects.all()
+    return render(request, 'manager.html', {'uname': uname,'managerList':managerList})
 
 
 

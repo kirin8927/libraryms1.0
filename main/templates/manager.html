@@ -1,4 +1,15 @@
 {% extends 'base.html' %}
+{% block header %}
+<script>
+    function delAdmin(admin_id) {
+        if(confirm("确定要删除管理员吗?")){
+
+        }
+
+    }
+</script>
+
+{% endblock header %}
 
 {% block table %}
     <table width="778"  border="0" cellspacing="0" cellpadding="0" align="center">
@@ -29,40 +40,24 @@
     <td width="9%" bgcolor="#F9D16B">权限设置</td>
     <td width="8%" bgcolor="#F9D16B">删除</td>
   </tr>
-
-  <tr>
-    <td style="padding:5px;">java1234</td>
-    <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled="disabled" checked
-></td>
-    <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled="disabled" checked
-></td>
-    <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled checked
-></td>
-    <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled checked
-></td>
-    <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled checked
-></td>
-    <td align="center"><a href="#" onClick="window.open('manager.do?action=managerModifyQuery&id=3','','width=292,height=175')">权限设置</a></td>
-    <td align="center">
-	<a href="manager.do?action=managerDel&id=3">删除</a></td>
-  </tr>
-
-  <tr>
-    <td style="padding:5px;">tsoft</td>
-    <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled="disabled" checked
-></td>
-    <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled="disabled" checked
-></td>
-    <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled checked
-></td>
-    <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled checked
-></td>
-    <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled checked
-></td>
-    <td align="center">&nbsp;</td>
-    <td align="center">
-	&nbsp;</td>
-  </tr>
+    {% for m in managerList %}
+        <tr>
+            <td style="padding:5px;">{{ m.admin_name }}</td>
+            <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled="disabled" {% if m.admin_jurisdiction.system_settings %}checked{% endif %}
+        ></td>
+            <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled="disabled"  {% if m.admin_jurisdiction.reader_manage %}checked{% endif %}
+        ></td>
+            <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled {% if m.admin_jurisdiction.boook_manage %}checked{% endif %}
+        ></td>
+            <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled {% if m.admin_jurisdiction.book_return_borrow %}checked{% endif %}
+        ></td>
+            <td align="center"><input name="checkbox" type="checkbox" class="noborder" value="checkbox" disabled {% if m.admin_jurisdiction.system_search %}checked{% endif %}
+        ></td>
+            <td align="center"><a href="#" >权限设置</a></td>
+            <td align="center">
+            <a href="/manager/" onclick="delAdmin({{ m.admin_id }})">删除</a></td>
+          </tr>
+    {% endfor %}
 
 </table></td>
       </tr>
