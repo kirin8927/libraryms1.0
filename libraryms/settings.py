@@ -130,5 +130,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static\CSS'),
     os.path.join(BASE_DIR,'static\Images'),
-    os.path.join(BASE_DIR,'static\JS')
+    os.path.join(BASE_DIR,'static\JS'),
+    os.path.join(BASE_DIR,'static\My97DatePicker'),
 ]

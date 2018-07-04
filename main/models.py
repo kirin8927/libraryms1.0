@@ -101,7 +101,7 @@ class LibraryInfo(models.Model):
     lib_id = models.AutoField(primary_key=True)
     lib_name = models.CharField(max_length=30)
     lib_manager = models.CharField(max_length=30)
-    lib_phone = models.IntegerField()
+    lib_phone = models.CharField(max_length=30)
     lib_location = models.CharField(max_length=30)
     lib_email = models.CharField(max_length=30)
     lib_url = models.CharField(max_length=30)
