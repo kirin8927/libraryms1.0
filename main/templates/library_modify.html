@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <script language="javascript">
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script >
+
+
         function checkForm(form){
-            for(i=0;i<form.length;i++){
+            for(i=2;i<form.length;i++){
                 if(form.elements[i].value==""){
                     alert("请将信息添写完整!");
                     form.elements[i].focus();
@@ -12,6 +15,8 @@
             }
         }
     </script>
+
+    <script type="text/javascript" src="/static/WdatePicker.js"></script>
 
 {% endblock header %}
 
@@ -35,8 +40,8 @@
 </table>
     <form name="form1" method="post" action="/lm/libraryModify/">
         {% csrf_token %}
-        {% for lib in lib_list %}
 
+    <input type="hidden" name="lib_id" value="{{lib.lib_id}}"/>
       <table width="58%"  border="0" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolordark="#D2E3E6" bordercolorlight="#FFFFFF">
       <tr align="center">
         <td width="20%" align="left" style="padding:5px;">图书馆名称：</td>
@@ -66,7 +71,7 @@
     </tr>
     <tr>
       <td align="left" style="padding:5px;">建馆时间：</td>
-      <td align="left"><input name="createDate" type="text" id="createDate" size="30" value="{{ lib.lib_build|date:'Y-m-d' }}" >
+      <td align="left"><input name="createDate" class="Wdate" onclick="WdatePicker();" type="text" id="createDate" size="30" value="{{ lib.lib_build|date:'Y-m-d' }}" >
       (日期格式：2007-11-22)</td>
     </tr>
     <tr>
@@ -80,7 +85,9 @@
         <input name="Submit2" type="reset" class="btn_grey" value="取消"></td>
     </tr>
 </table>
-        {% endfor %}
+
+
+
 
 </form><td>
       </tr>
