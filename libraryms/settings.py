@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'libraryms.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_librarysys',
+        'NAME': 'db_librarysys1.0',
         'HOST':'127.0.0.1',
         'PORT':'3306',
         'USER':'root',
-        'PASSWORD':'123456'
+        'PASSWORD':'19920911'
 
 
     }
@@ -130,5 +130,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static\CSS'),
     os.path.join(BASE_DIR,'static\Images'),
-    os.path.join(BASE_DIR,'static\JS')
+    os.path.join(BASE_DIR,'static\JS'),
+    os.path.join(BASE_DIR,'static\My97DatePicker'),
 ]

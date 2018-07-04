@@ -3,7 +3,7 @@
 {% block table %}
     <table width="778" height="510"  border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="tableBorder_gray">
   <tr>
-    <td align="center" valign="top" style="padding:5px;"><table width="100%"  border="0" cellpadding="0" cellspacing="0">
+    <td align="center" valign="top" style="padding:5px;position: relative"><table width="100%"  border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td height="20" align="right" valign="middle" class="word_orange">当前位置：首页 &gt;&gt;&gt;&nbsp;</td>
       </tr>
@@ -28,33 +28,47 @@
 					<td>定价(元)</td>
 				    <td>借阅次数</td>
                   </tr>
-                    {% for b in booklist %}
-                        <tr>
-                            <td height="25" align="center">{{ forloop.counter }}</td>
-                            <td style="padding:5px;">&nbsp;{{ b.book_id.book_id }}</td>
-                            <td style="padding:5px;">{{ b.book_id.book_name }}</td>
-                            <td style="padding:5px;">{{ b.book_id.book_type.book_type }}</td>
-                            <td align="center">&nbsp;{{ b.book_id.book_store.store_name }}</td>
-                            <td align="center">&nbsp;{{ b.book_id.book_publishing }}</td>
-                            <td width="11%" align="center">{{ b.book_id.book_author }}</td>
-                            <td width="8%" align="center">{{ b.book_id.book_price }}</td>
-                            <td width="8%" align="center">{{ b.borrow_num }}</td>
-                          </tr>
+                    {% for b in t_per_page %}
+                  <tr>
+                    <td height="25" align="center">{{ t_per_page.start_index|add:forloop.counter0 }}</td>
+					<td style="padding:5px;">&nbsp;{{ b.book_id.book_id }}</td>
+					<td style="padding:5px;">{{ b.book_id.book_name }}</td>
+					<td style="padding:5px;">{{ b.book_id.book_type.book_type }}</td>
+					<td align="center">&nbsp;{{ b.book_id.book_store.store_name }}</td>
+					<td align="center"> {{ b.book_id.book_publishing }}</td>
+					<td width="11%" align="center">{{ b.book_id.book_author }}</td>
+					<td width="8%" align="center">{{ b.book_id.book_price }}</td>
+				    <td width="8%" align="center">{{ b.borrow_num }}</td>
+                  </tr>
                     {% endfor %}
 
                 </table>
                   </td>
                 <td width="2%" rowspan="2">&nbsp;</td>
               </tr>
-              <tr>
-                <td height="30" align="right" valign="middle"><a href="/more/"><img src="/static/more.GIF" width="50" height="20" border="0">&nbsp;</a></td>
-              </tr>
+
             </table></td>
           </tr>
         </table>
           </td>
       </tr>
     </table>
+        <div id="pagebar" style="margin: 0 auto;width: 770px;text-align: center;background-color: rgb(255,255,255);position:absolute; bottom: 5px;">
+        {% if t_per_page.has_previous %}
+            <a href="/more/?num={{ t_per_page.previous_page_number }}">上一页&emsp;</a>
+        {% endif %}
+        {% for n in paginator.page_range %}
+            {% if n <= 10 %}
+                <a href="/more/?num={{ n }}">{{ n }}&emsp;</a>
+            {% endif %}
+
+
+        {% endfor %}
+
+        {% if t_per_page.has_next %}
+            <a href="/more/?num={{ t_per_page.next_page_number }}">下一页</a>
+        {% endif %}
+</div>
     </td>
   </tr>
 </table>
@@ -62,3 +76,5 @@
 
 
 {% endblock table %}
+
+

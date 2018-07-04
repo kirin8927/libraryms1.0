@@ -1,3 +1,4 @@
+#coding=utf-8
 # This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
 #   * Rearrange models' order
@@ -9,157 +10,107 @@ from __future__ import unicode_literals
 
 from django.db import models
 
+# 书架模型类
+class BookStore(models.Model):
+    store_id = models.AutoField(primary_key=True)
+    store_name = models.CharField(max_length=30)
 
-class DjangoMigrations(models.Model):
-    app = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
-    applied = models.DateTimeField()
+# 图书类型模型类
+class BookType(models.Model):
+    booktype_id = models.AutoField(primary_key=True)
+    book_type = models.CharField(max_length=30)
+    borrow_days = models.IntegerField()
 
-    class Meta:
-        managed = False
-        db_table = 'django_migrations'
+# 读者类型模型类
+class ReaderType(models.Model):
+    readertype_id = models.AutoField(primary_key=True)
+    reader_type = models.CharField(max_length=30)
+    reader_borrow_num = models.IntegerField()
 
+# 管理员权限模型类
+class Jurisdiction(models.Model):
+    jurisdiction_id = models.AutoField(primary_key=True)
+    system_settings = models.BooleanField()
+    reader_manage = models.BooleanField()
+    boook_manage = models.BooleanField()
+    book_return_borrow = models.BooleanField()
+    system_search = models.BooleanField()
 
-class TbBookcase(models.Model):
-    name = models.CharField(max_length=30, blank=True, null=True)
-    column_3 = models.CharField(db_column='Column_3', max_length=10, blank=True, null=True)  # Field name made lowercase.
+# 读者模型类
+class Reader(models.Model):
+    reader_id = models.AutoField(primary_key=True)
+    reader_name = models.CharField(max_length=30)
+    reader_type = models.ForeignKey(ReaderType,on_delete=models.CASCADE)
+    reader_card = models.CharField(max_length=30)
+    reader_phone = models.CharField(max_length=30)
+    reader_email = models.CharField(max_length=30)
 
-    class Meta:
-        managed = False
-        db_table = 'tb_bookcase'
+# 管理员模型类
+class Admin(models.Model):
+    admin_id = models.AutoField(primary_key=True)
+    admin_name = models.CharField(max_length=30)
+    admin_password = models.CharField(max_length=30)
+    admin_jurisdiction = models.ForeignKey(Jurisdiction,on_delete=models.CASCADE)
+    admin_phone = models.CharField(max_length=30)
 
+# 图书信息模型类
+class Book(models.Model):
+    book_id = models.AutoField(primary_key=30)
+    book_name = models.CharField(max_length=30)
+    book_store = models.ForeignKey(BookStore,on_delete=models.CASCADE)
+    book_type = models.ForeignKey(BookType,on_delete=models.CASCADE)
+    book_publishing = models.CharField(max_length=30)
+    book_author = models.CharField(max_length=30)
+    book_price = models.FloatField()
+    book_num = models.IntegerField()
 
-class TbBookinfo(models.Model):
-    barcode = models.CharField(max_length=30, blank=True, null=True)
-    bookname = models.CharField(max_length=70, blank=True, null=True)
-    typeid = models.IntegerField(blank=True, null=True)
-    author = models.CharField(max_length=30, blank=True, null=True)
-    translator = models.CharField(max_length=30, blank=True, null=True)
-    isbn = models.CharField(db_column='ISBN', max_length=20, blank=True, null=True)  # Field name made lowercase.
-    price = models.FloatField(blank=True, null=True)
-    page = models.IntegerField(blank=True, null=True)
-    bookcase = models.IntegerField(blank=True, null=True)
-    intime = models.DateField(db_column='inTime', blank=True, null=True)  # Field name made lowercase.
-    operator = models.CharField(max_length=30, blank=True, null=True)
-    del_field = models.IntegerField(db_column='del', blank=True, null=True)  # Field renamed because it was a Python reserved word.
-
-    class Meta:
-        managed = False
-        db_table = 'tb_bookinfo'
-
-
-class TbBooktype(models.Model):
-    typename = models.CharField(max_length=30, blank=True, null=True)
-    days = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'tb_booktype'
-
-
-class TbBorrow(models.Model):
-    readerid = models.IntegerField(blank=True, null=True)
-    bookid = models.IntegerField(blank=True, null=True)
-    borrowtime = models.DateField(db_column='borrowTime', blank=True, null=True)  # Field name made lowercase.
-    backtime = models.DateField(db_column='backTime', blank=True, null=True)  # Field name made lowercase.
-    operator = models.CharField(max_length=30, blank=True, null=True)
-    ifback = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'tb_borrow'
-
-
-class TbGiveback(models.Model):
-    readerid = models.IntegerField(blank=True, null=True)
-    bookid = models.IntegerField(blank=True, null=True)
-    backtime = models.DateField(db_column='backTime', blank=True, null=True)  # Field name made lowercase.
-    operator = models.CharField(max_length=30, blank=True, null=True)
+# 图书借阅信息模型类
+class BookBorrow(models.Model):
+    book_id = models.ForeignKey(Book,on_delete=models.CASCADE)
+    reader_id = models.ForeignKey(Reader,on_delete=models.CASCADE)
+    borrow_date = models.DateField(auto_now_add=True)
+    private_date = models.DateField()
+    if_return = models.BooleanField()
+    borrow_num = models.IntegerField()
 
     class Meta:
-        managed = False
-        db_table = 'tb_giveback'
+        unique_together = (('reader_id','book_id'),)
 
-
-class TbLibrary(models.Model):
-    libraryname = models.CharField(max_length=50, blank=True, null=True)
-    curator = models.CharField(max_length=10, blank=True, null=True)
-    tel = models.CharField(max_length=20, blank=True, null=True)
-    address = models.CharField(max_length=100, blank=True, null=True)
-    email = models.CharField(max_length=100, blank=True, null=True)
-    url = models.CharField(max_length=100, blank=True, null=True)
-    createdate = models.DateField(db_column='createDate', blank=True, null=True)  # Field name made lowercase.
-    introduce = models.TextField(blank=True, null=True)
+# 图书归还信息模型类
+class BookReturn(models.Model):
+    book_id = models.ForeignKey(Book,on_delete=models.CASCADE)
+    reader_id = models.ForeignKey(Reader,on_delete=models.CASCADE)
+    # borrow_date = models.DateField()
+    return_date = models.DateField(auto_now_add=True)
 
     class Meta:
-        managed = False
-        db_table = 'tb_library'
+        unique_together = (('reader_id','book_id'),)
 
-
-class TbManager(models.Model):
-    name = models.CharField(max_length=30, blank=True, null=True)
-    pwd = models.CharField(db_column='PWD', max_length=30, blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        managed = False
-        db_table = 'tb_manager'
-
-
-class TbParameter(models.Model):
-    cost = models.IntegerField(blank=True, null=True)
-    validity = models.IntegerField(blank=True, null=True)
+# 图书续借信息模型类
+class BookRenewal(models.Model):
+    book_id = models.ForeignKey(Book, on_delete=models.CASCADE)
+    reader_id = models.ForeignKey(Reader, on_delete=models.CASCADE)
+    # borrow_date = models.DateField()
+    renewal_date = models.DateField()
 
     class Meta:
-        managed = False
-        db_table = 'tb_parameter'
+        unique_together = (('reader_id','book_id'),)
 
+# 图书馆信息模型类
+class LibraryInfo(models.Model):
+    lib_id = models.AutoField(primary_key=True)
+    lib_name = models.CharField(max_length=30)
+    lib_manager = models.CharField(max_length=30)
+    lib_phone = models.CharField(max_length=30)
+    lib_location = models.CharField(max_length=30)
+    lib_email = models.CharField(max_length=30)
+    lib_url = models.CharField(max_length=30)
+    lib_build = models.DateField()
+    lib_info = models.TextField()
 
-class TbPublishing(models.Model):
-    isbn = models.CharField(db_column='ISBN', max_length=20, blank=True, null=True)  # Field name made lowercase.
-    pubname = models.CharField(max_length=30, blank=True, null=True)
+# 图书馆通行证信息模型类
+class TransactionCard(models.Model):
+    transactioncard_id = models.AutoField(primary_key=True)
+    price = models.FloatField()
+    indate = models.IntegerField()
 
-    class Meta:
-        managed = False
-        db_table = 'tb_publishing'
-
-
-class TbPurview(models.Model):
-    id = models.IntegerField(primary_key=True)
-    sysset = models.IntegerField(blank=True, null=True)
-    readerset = models.IntegerField(blank=True, null=True)
-    bookset = models.IntegerField(blank=True, null=True)
-    borrowback = models.IntegerField(blank=True, null=True)
-    sysquery = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'tb_purview'
-
-
-class TbReader(models.Model):
-    name = models.CharField(max_length=20, blank=True, null=True)
-    sex = models.CharField(max_length=4, blank=True, null=True)
-    barcode = models.CharField(max_length=30, blank=True, null=True)
-    vocation = models.CharField(max_length=50, blank=True, null=True)
-    birthday = models.DateField(blank=True, null=True)
-    papertype = models.CharField(db_column='paperType', max_length=10, blank=True, null=True)  # Field name made lowercase.
-    paperno = models.CharField(db_column='paperNO', max_length=20, blank=True, null=True)  # Field name made lowercase.
-    tel = models.CharField(max_length=20, blank=True, null=True)
-    email = models.CharField(max_length=100, blank=True, null=True)
-    createdate = models.DateField(db_column='createDate', blank=True, null=True)  # Field name made lowercase.
-    operator = models.CharField(max_length=30, blank=True, null=True)
-    remark = models.TextField(blank=True, null=True)
-    typeid = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'tb_reader'
-
-
-class TbReadertype(models.Model):
-    name = models.CharField(max_length=50, blank=True, null=True)
-    number = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'tb_readertype'

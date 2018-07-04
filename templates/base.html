@@ -14,7 +14,7 @@
 
     {% endblock header %}
 </head>
-<body onLoad="load(timg.jpg)" style="background:#00adfffc">
+<body  style="background:#00adfffc">
 
 
 
@@ -29,8 +29,8 @@
       <tr>
         <td height="20">&nbsp;</td>
         <td width="10%"><a href="#" onClick="window.location.reload();" class="word_dark">刷新页面</a></td>
-        <td width="9%"><a href="#" onClick="myclose()" class="word_dark">关闭系统</a></td>
-		<script language="javascript">
+        <td width="9%"><a href="/login/" onClick="myclose()" class="word_dark">关闭系统</a></td>
+		<script >
 			function myclose(){
 				if(confirm("真的要关闭当前窗口吗?")){
 					window.close();
@@ -41,7 +41,7 @@
     </table>
       <table width="93%" height="79"  border="0" cellpadding="0" cellspacing="0">
         <tr>
-          <td height="69" align="right" valign="bottom">当前登录用户：java1234</td>
+          <td height="69" align="right" valign="bottom">当前登录用户：{{ uname }}</td>
         </tr>
     </table></td>
   </tr>

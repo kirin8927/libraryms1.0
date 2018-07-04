@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^bookBorrow/$',views.bookBorrow_view),
     url(r'^bookBack/$',views.bookBack_view),
     url(r'^book/$',views.book_view),
+    url(r'^more/$',views.index_view2),
 ]
