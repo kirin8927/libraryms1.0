@@ -15,7 +15,7 @@
   <tr>
     <td width="87%">&nbsp;      </td>
 <td width="13%">
-      <a href="reader_add.jsp">添加读者信息</a></td>
+      <a href="/reader_add/">添加读者信息</a></td>
   </tr>
 </table>
   <table width="95%"  border="1" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolordark="#F6B83B" bordercolorlight="#FFFFFF">
@@ -23,37 +23,50 @@
     <td width="13%" bgcolor="#F9D16B">条形码</td>
     <td width="10%" bgcolor="#F9D16B">姓名</td>
     <td width="8%" bgcolor="#F9D16B">读者类型</td>
-    <td width="12%" bgcolor="#F9D16B">证件类型</td>
-    <td width="20%" bgcolor="#F9D16B">证件号码</td>
+{#    <td width="12%" bgcolor="#F9D16B">证件类型</td>#}
+    <td width="32%" bgcolor="#F9D16B">身份证</td>
     <td width="12%" bgcolor="#F9D16B">电话</td>
     <td width="15%" bgcolor="#F9D16B">Email</td>
     <td width="5%" bgcolor="#F9D16B">修改</td>
     <td width="5%" bgcolor="#F9D16B">删除</td>
   </tr>
+{% for rl in readerlist %}
 
   <tr>
-    <td style="padding:5px;">2008010100001</td>
-    <td style="padding:5px;"><a href="reader.do?action=readerDetail&ID=1">wgh</a></td>
-    <td style="padding:5px;">学生</td>
-    <td align="center">身份证</td>
-    <td align="center">2201041980********</td>
-    <td align="center">13634*******</td>
-    <td align="center">wgh717@****.com</td>
+    <td style="padding:5px;">{{ rl.reader_id }}</td>
+    <td style="padding:5px;"><a href="reader.do?action=readerDetail&ID=1">{{ rl.reader_name }}</a></td>
+    <td style="padding:5px;">{{ rl.reader_type.reader_type }}</td>
+{#    <td align="center">{{ rl.reader_card_type }}</td>#}
+    <td align="center">{{ rl.reader_card }}</td>
+    <td align="center">{{ rl.reader_phone }}</td>
+    <td align="center">{{ rl.reader_email }}</td>
     <td align="center"><a href="reader.do?action=readerModifyQuery&ID=1">修改</a></td>
     <td align="center"><a href="reader.do?action=readerDel&ID=1">删除</a></td>
   </tr>
-
-  <tr>
-    <td style="padding:5px;">123123123</td>
-    <td style="padding:5px;"><a href="reader.do?action=readerDetail&ID=2">的</a></td>
-    <td style="padding:5px;">教师</td>
-    <td align="center">身份证</td>
-    <td align="center">220</td>
-    <td align="center">&nbsp;</td>
-    <td align="center">&nbsp;</td>
-    <td align="center"><a href="reader.do?action=readerModifyQuery&ID=2">修改</a></td>
-    <td align="center"><a href="reader.do?action=readerDel&ID=2">删除</a></td>
-  </tr>
+{% endfor %}
+{#  <tr>#}
+{#    <td style="padding:5px;">2008010100001</td>#}
+{#    <td style="padding:5px;"><a href="reader.do?action=readerDetail&ID=1">wgh</a></td>#}
+{#    <td style="padding:5px;">学生</td>#}
+{#    <td align="center">身份证</td>#}
+{#    <td align="center">2201041980********</td>#}
+{#    <td align="center">13634*******</td>#}
+{#    <td align="center">wgh717@****.com</td>#}
+{#    <td align="center"><a href="reader.do?action=readerModifyQuery&ID=1">修改</a></td>#}
+{#    <td align="center"><a href="reader.do?action=readerDel&ID=1">删除</a></td>#}
+{#  </tr>#}
+{##}
+{#  <tr>#}
+{#    <td style="padding:5px;">123123123</td>#}
+{#    <td style="padding:5px;"><a href="reader.do?action=readerDetail&ID=2">的</a></td>#}
+{#    <td style="padding:5px;">教师</td>#}
+{#    <td align="center">身份证</td>#}
+{#    <td align="center">220</td>#}
+{#    <td align="center">&nbsp;</td>#}
+{#    <td align="center">&nbsp;</td>#}
+{#    <td align="center"><a href="reader.do?action=readerModifyQuery&ID=2">修改</a></td>#}
+{#    <td align="center"><a href="reader.do?action=readerDel&ID=2">删除</a></td>#}
+{#  </tr>#}
 
 </table></td>
       </tr>
@@ -61,26 +74,8 @@
 </td>
   </tr>
 </table>
-      <tr>
-        <td height="11" colspan="4" background="Images/copyright_t.gif"></td>
+    </td>
   </tr>
-      <tr>
-        <td width="124" height="23">&nbsp;</td>
-        <td valign="bottom" align="center"> CopyRight &copy; 2008 www.**********.com 长春市*****有限公司</td>
-        <td width="141">&nbsp;</td>
-      </tr>
-      <tr>
-        <td height="23">&nbsp;</td>
-        <td align="center">本站请使用IE6.0或以上版本 1024*768为最佳显示效果</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td height="8"></td>
-        <td height="8"></td>
-        <td height="8"></td>
-      </tr>
 </table>
-</td>
-  </tr>
 
 {% endblock table %}

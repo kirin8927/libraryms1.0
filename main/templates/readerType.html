@@ -14,7 +14,7 @@
  <table width="91%"  border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td align="right">
-      <a href="#" onClick="window.open('readerType_add.jsp','','width=292,height=175')">添加读者类型信息</a> </td>
+      <a href="/readerTypeAdd/" >添加读者类型信息</a> </td>
 </tr>
 </table>
   <table width="91%"  border="1" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolordark="#F6b83B" bordercolorlight="#FFFFFF">
@@ -24,27 +24,35 @@
     <td width="16%" bgcolor="#F9D16B">修改</td>
     <td width="14%" bgcolor="#F9D16B">删除</td>
   </tr>
+{% for rt in readerTypelist %}
 
   <tr>
-    <td style="padding:5px;">&nbsp;学生</td>
-    <td style="padding:5px;">&nbsp;10</td>
+    <td style="padding:5px;">&nbsp;{{ rt.reader_type }}</td>
+    <td style="padding:5px;">&nbsp;{{ rt.reader_borrow_num }}</td>
     <td align="center"><a href="#" onClick="window.open('readerType.do?action=readerTypeModifyQuery&ID=1','','width=292,height=175')">修改</a></td>
     <td align="center"><a href="readerType.do?action=readerTypeDel&ID=1">删除</a></td>
   </tr>
-
-  <tr>
-    <td style="padding:5px;">&nbsp;教师</td>
-    <td style="padding:5px;">&nbsp;20</td>
-    <td align="center"><a href="#" onClick="window.open('readerType.do?action=readerTypeModifyQuery&ID=2','','width=292,height=175')">修改</a></td>
-    <td align="center"><a href="readerType.do?action=readerTypeDel&ID=2">删除</a></td>
-  </tr>
-
-  <tr>
-    <td style="padding:5px;">&nbsp;其他</td>
-    <td style="padding:5px;">&nbsp;5</td>
-    <td align="center"><a href="#" onClick="window.open('readerType.do?action=readerTypeModifyQuery&ID=3','','width=292,height=175')">修改</a></td>
-    <td align="center"><a href="readerType.do?action=readerTypeDel&ID=3">删除</a></td>
-  </tr>
+{% endfor %}
+{#  <tr>#}
+{#    <td style="padding:5px;">&nbsp;学生</td>#}
+{#    <td style="padding:5px;">&nbsp;10</td>#}
+{#    <td align="center"><a href="#" onClick="window.open('readerType.do?action=readerTypeModifyQuery&ID=1','','width=292,height=175')">修改</a></td>#}
+{#    <td align="center"><a href="readerType.do?action=readerTypeDel&ID=1">删除</a></td>#}
+{#  </tr>#}
+{##}
+{#  <tr>#}
+{#    <td style="padding:5px;">&nbsp;教师</td>#}
+{#    <td style="padding:5px;">&nbsp;20</td>#}
+{#    <td align="center"><a href="#" onClick="window.open('readerType.do?action=readerTypeModifyQuery&ID=2','','width=292,height=175')">修改</a></td>#}
+{#    <td align="center"><a href="readerType.do?action=readerTypeDel&ID=2">删除</a></td>#}
+{#  </tr>#}
+{##}
+{#  <tr>#}
+{#    <td style="padding:5px;">&nbsp;其他</td>#}
+{#    <td style="padding:5px;">&nbsp;5</td>#}
+{#    <td align="center"><a href="#" onClick="window.open('readerType.do?action=readerTypeModifyQuery&ID=3','','width=292,height=175')">修改</a></td>#}
+{#    <td align="center"><a href="readerType.do?action=readerTypeDel&ID=3">删除</a></td>#}
+{#  </tr>#}
 
 </table></td>
       </tr>

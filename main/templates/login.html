@@ -8,9 +8,16 @@
         if (form.name.value==""){
             alert("请输入管理员名称!");form.name.focus();return false;
         }
-        if (form.pwd.value==""){
+
+        else if (form.pwd.value==""){
             alert("请输入密码!");form.pwd.focus();return false;
         }
+{#        else if (form.name.value!=""&&form.name.value!={{ name }}){#}
+{#            alert("请输入正确的管理员名称!");form.name.focus();return false;#}
+{#        }#}
+{#        else if(form.pwd.value!=""&&form.pwd.value!={{ pwd }}){#}
+{#            alert("请输入正确的密码!");form.pwd.focus();return false;#}
+{#        }#}
 }
 </script>
 </head>
@@ -41,7 +48,9 @@
               <tr>
                 <td width="2%">&nbsp;</td>
                   <td width="97%" align="center" valign="top">
-                    <form name="form1" method="post" action="/static/main.html">
+
+                    <form name="form1" method="post" action="/login/">
+                        {% csrf_token %}
                       <table width="100%"  border="0" cellpadding="0" cellspacing="0" bordercolorlight="#FFFFFF" bordercolordark="#D2E3E6">
                         <tr>
                           <td height="57">&nbsp;</td>
@@ -52,21 +61,23 @@
                           <td width="50%" height="37">&nbsp;</td>
                       <td width="10%">管理员名称：</td>
                       <td width="31%">
-                        <input name="name" type="text" class="logininput" id="name" size="27">                        </td>
+                        <input name="name" type="text" class="logininput" id="name" size="27" value="{{ name }}">                        </td>
                       <td width="9%">&nbsp;</td>
                     </tr>
                         <tr>
                           <td height="37">&nbsp;</td>
                       <td>管理员密码：</td>
-                      <td><input name="pwd" type="password" class="logininput" id="pwd" size="27"></td>
+                      <td><input name="pwd" type="password" class="logininput" id="pwd" size="27" value="{{ pwd }}"></td>
                       <td>&nbsp;</td>
                     </tr>
                         <tr>
                           <td height="30">&nbsp;</td>
-                      <td colspan="2" align="center"><input name="Submit" type="submit" class="btn_grey" value="确定" onClick="return check(form1)">
+                      <td colspan="2" align="center">
+                          <input type="checkbox" name="flag" value="1" checked/>记住密码
+                          <input name="Submit" type="submit" class="btn_grey" value="确定" onClick=" return check(form1)">
                         &nbsp;
-                        <input name="Submit3" type="reset" class="btn_grey" value="重置">&nbsp;
-                        <input name="Submit2" type="button" class="btn_grey" value="关闭" onClick="window.close();"></td>
+                          <input name="Submit3" type="reset" class="btn_grey" value="重置">&nbsp;
+                          <input name="Submit2" type="button" class="btn_grey" value="关闭" onClick="window.close();"></td>
                       <td>&nbsp;</td>
                     </tr>
                         </table> 

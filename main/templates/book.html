@@ -16,7 +16,7 @@
   <tr>
     <td width="87%">&nbsp;      </td>
 <td width="13%">
-      <a href="book_add.jsp">添加图书信息</a></td>
+      <a href="/book_add/">添加图书信息</a></td>
   </tr>
 </table>
   <table width="98%"  border="1" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolordark="#F6B83B" bordercolorlight="#FFFFFF">
@@ -29,39 +29,51 @@
     <td width="9%" bgcolor="#F9D16B">修改</td>
     <td width="5%" bgcolor="#F9D16B">删除</td>
   </tr>
+        {% for book in booklist %}
 
-  <tr>
-    <td style="padding:5px;">&nbsp;9787302047230</td>
-    <td style="padding:5px;"><a href="book.do?action=bookDetail&ID=1">Java学习指南</a></td>
-    <td style="padding:5px;">&nbsp;计算机类</td>
-    <td style="padding:5px;">&nbsp;电子工业出版社</td>
-    <td style="padding:5px;">&nbsp;A架</td>
+          <tr>
+            <td style="padding:5px;">&nbsp;{{ book.book_id }}</td>
+            <td style="padding:5px;"><a href="book.do?action=bookDetail&ID=1">{{ book.book_name }}</a></td>
+            <td style="padding:5px;">&nbsp;{{ book.book_type.book_type }}</td>
+            <td style="padding:5px;">&nbsp;{{ book.book_publishing }}</td>
+            <td style="padding:5px;">&nbsp;{{ book.book_store.store_name }}</td>
 
-    <td align="center"><a href="book.do?action=bookModifyQuery&ID=1">修改</a></td>
-    <td align="center"><a href="book.do?action=bookDel&ID=1">删除</a></td>
-  </tr>
-
-  <tr>
-    <td style="padding:5px;">&nbsp;001</td>
-    <td style="padding:5px;"><a href="book.do?action=bookDetail&ID=6">建筑测试</a></td>
-    <td style="padding:5px;">&nbsp;建筑类</td>
-    <td style="padding:5px;">&nbsp;电子工业出版社</td>
-    <td style="padding:5px;">&nbsp;B架</td>
-
-    <td align="center"><a href="book.do?action=bookModifyQuery&ID=6">修改</a></td>
-    <td align="center"><a href="book.do?action=bookDel&ID=6">删除</a></td>
-  </tr>
-
-  <tr>
-    <td style="padding:5px;">&nbsp;9787115157690</td>
-    <td style="padding:5px;"><a href="book.do?action=bookDetail&ID=3">JSP啊</a></td>
-    <td style="padding:5px;">&nbsp;计算机类</td>
-    <td style="padding:5px;">&nbsp;清华大学出版社</td>
-    <td style="padding:5px;">&nbsp;A架</td>
-
-    <td align="center"><a href="book.do?action=bookModifyQuery&ID=3">修改</a></td>
-    <td align="center"><a href="book.do?action=bookDel&ID=3">删除</a></td>
-  </tr>
+            <td align="center"><a href="book.do?action=bookModifyQuery&ID=1">修改</a></td>
+            <td align="center"><a href="book.do?action=bookDel&ID=1">删除</a></td>
+          </tr>
+        {% endfor %}
+{#  <tr>#}
+{#    <td style="padding:5px;">&nbsp;9787302047230</td>#}
+{#    <td style="padding:5px;"><a href="book.do?action=bookDetail&ID=1">Java学习指南</a></td>#}
+{#    <td style="padding:5px;">&nbsp;计算机类</td>#}
+{#    <td style="padding:5px;">&nbsp;电子工业出版社</td>#}
+{#    <td style="padding:5px;">&nbsp;A架</td>#}
+{##}
+{#    <td align="center"><a href="book.do?action=bookModifyQuery&ID=1">修改</a></td>#}
+{#    <td align="center"><a href="book.do?action=bookDel&ID=1">删除</a></td>#}
+{#  </tr>#}
+{##}
+{#  <tr>#}
+{#    <td style="padding:5px;">&nbsp;001</td>#}
+{#    <td style="padding:5px;"><a href="book.do?action=bookDetail&ID=6">建筑测试</a></td>#}
+{#    <td style="padding:5px;">&nbsp;建筑类</td>#}
+{#    <td style="padding:5px;">&nbsp;电子工业出版社</td>#}
+{#    <td style="padding:5px;">&nbsp;B架</td>#}
+{##}
+{#    <td align="center"><a href="book.do?action=bookModifyQuery&ID=6">修改</a></td>#}
+{#    <td align="center"><a href="book.do?action=bookDel&ID=6">删除</a></td>#}
+{#  </tr>#}
+{##}
+{#  <tr>#}
+{#    <td style="padding:5px;">&nbsp;9787115157690</td>#}
+{#    <td style="padding:5px;"><a href="book.do?action=bookDetail&ID=3">JSP啊</a></td>#}
+{#    <td style="padding:5px;">&nbsp;计算机类</td>#}
+{#    <td style="padding:5px;">&nbsp;清华大学出版社</td>#}
+{#    <td style="padding:5px;">&nbsp;A架</td>#}
+{##}
+{#    <td align="center"><a href="book.do?action=bookModifyQuery&ID=3">修改</a></td>#}
+{#    <td align="center"><a href="book.do?action=bookDel&ID=3">删除</a></td>#}
+{#  </tr>#}
 
 </table></td>
       </tr>

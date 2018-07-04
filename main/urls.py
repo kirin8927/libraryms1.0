@@ -5,6 +5,14 @@ import views
 
 urlpatterns = [
     url(r'^$',views.index_view),
+    url(r'^a/$',views.base_view),
+    url(r'^register/$',views.sign_view),
+    url(r'^bookcaseAdd/$',views.bookcaseAdd_view),
+    url(r'^readerTypeAdd/$',views.readerTypeAdd_view),
+    url(r'^reader_add/$',views.reader_add_view),
+    url(r'^book_add/$',views.book_add_view),
+    url(r'^bookTypeAdd/$',views.bookTypeAdd_view),
+    url(r'^more/$',views.more_view),
     url(r'^login/$',views.login_view),
     url(r'^manager/$',views.manager_view),
     url(r'^change_pwd/$',views.change_view),

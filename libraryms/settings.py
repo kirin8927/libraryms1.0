@@ -1,3 +1,4 @@
+#coding=utf-8
 """
 Django settings for libraryms project.
 
@@ -37,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main'
+    'main',
+    'ckeditor',
+    'ckeditor_uploader',
+    'haystack'
 ]
 
 MIDDLEWARE = [
@@ -64,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'
             ],
         },
     },
@@ -130,5 +135,22 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'static\CSS'),
     os.path.join(BASE_DIR,'static\Images'),
-    os.path.join(BASE_DIR,'static\JS')
+    os.path.join(BASE_DIR,'static\JS'),
+    os.path.join(BASE_DIR,'static\My97DatePicker'),
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+CKEDITOR_UPLOAD_PATH = 'upload/'
+
+
+#指定生成的搜索引擎
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR,'whoosh_index'),
+    },
+}
+
+#实时生成索引文件
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

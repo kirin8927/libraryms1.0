@@ -21,68 +21,18 @@
     <td width="16%" bgcolor="#F9D16B">应还时间</td>
     </tr>
 
-  <tr>
-    <td style="padding:5px;">&nbsp;9787302047230</td>
-    <td style="padding:5px;">Java学习指南</td>
-    <td style="padding:5px;">&nbsp;2008010100001</td>
-    <td style="padding:5px;">&nbsp;wgh</td>
-    <td style="padding:5px;">&nbsp;2007-11-22</td>
-    <td style="padding:5px;">&nbsp;2007-12-22</td>
-    </tr>
+            {% for borrow in borrowlist %}
 
-  <tr>
-    <td style="padding:5px;">&nbsp;9787115157690</td>
-    <td style="padding:5px;">JSP啊</td>
-    <td style="padding:5px;">&nbsp;2008010100001</td>
-    <td style="padding:5px;">&nbsp;wgh</td>
-    <td style="padding:5px;">&nbsp;2007-11-26</td>
-    <td style="padding:5px;">&nbsp;2007-12-26</td>
-    </tr>
+                  <tr>
+                    <td style="padding:5px;">&nbsp;{{ borrow.book_id.book_id }}</td>
+                    <td style="padding:5px;">{{ borrow.book_id.book_name }}</td>
+                    <td style="padding:5px;">&nbsp;{{ borrow.reader_id.reader_id }}</td>
+                    <td style="padding:5px;">&nbsp;{{ borrow.reader_id.reader_name }}</td>
+                    <td style="padding:5px;">&nbsp;{{ borrow.borrow_date }}</td>
+                    <td style="padding:5px;">&nbsp;{{ borrow.private_date }}</td>
 
-  <tr>
-    <td style="padding:5px;">&nbsp;9787302047230</td>
-    <td style="padding:5px;">Java学习指南</td>
-    <td style="padding:5px;">&nbsp;2008010100001</td>
-    <td style="padding:5px;">&nbsp;wgh</td>
-    <td style="padding:5px;">&nbsp;2007-11-26</td>
-    <td style="padding:5px;">&nbsp;2007-12-26</td>
-    </tr>
-
-  <tr>
-    <td style="padding:5px;">&nbsp;001</td>
-    <td style="padding:5px;">建筑测试</td>
-    <td style="padding:5px;">&nbsp;2008010100001</td>
-    <td style="padding:5px;">&nbsp;wgh</td>
-    <td style="padding:5px;">&nbsp;2013-05-03</td>
-    <td style="padding:5px;">&nbsp;2013-05-23</td>
-    </tr>
-
-  <tr>
-    <td style="padding:5px;">&nbsp;001</td>
-    <td style="padding:5px;">建筑测试</td>
-    <td style="padding:5px;">&nbsp;2008010100001</td>
-    <td style="padding:5px;">&nbsp;wgh</td>
-    <td style="padding:5px;">&nbsp;2013-05-03</td>
-    <td style="padding:5px;">&nbsp;2013-05-23</td>
-    </tr>
-
-  <tr>
-    <td style="padding:5px;">&nbsp;001</td>
-    <td style="padding:5px;">建筑测试</td>
-    <td style="padding:5px;">&nbsp;2008010100001</td>
-    <td style="padding:5px;">&nbsp;wgh</td>
-    <td style="padding:5px;">&nbsp;2013-05-03</td>
-    <td style="padding:5px;">&nbsp;2013-05-23</td>
-    </tr>
-
-  <tr>
-    <td style="padding:5px;">&nbsp;9787302047230</td>
-    <td style="padding:5px;">Java学习指南</td>
-    <td style="padding:5px;">&nbsp;2008010100001</td>
-    <td style="padding:5px;">&nbsp;wgh</td>
-    <td style="padding:5px;">&nbsp;2013-05-03</td>
-    <td style="padding:5px;">&nbsp;2013-06-02</td>
-    </tr>
+                  </tr>
+            {% endfor %}
 
 </table></td>
       </tr>

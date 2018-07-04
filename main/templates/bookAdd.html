@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <script language="javascript">
+        function checkForm(form){
+            for(i=0;i<form.length;i++){
+                if(form.elements[i].value==""){
+                    alert("请将信息添写完整!");
+                    form.elements[i].focus();
+                    return false;
+                }
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function display_alert()
+          {
+          alert("congratulate!!,注册成功")
+          }
+    </script>
+    <script type="text/javascript" src="/static/WdatePicker.js"></script>
+{% endblock header %}
+
+{% block table %}
+
+
+<table width="778"  border="0" cellspacing="0" cellpadding="0" align="center">
+  <tr>
+    <td valign="top" bgcolor="#FFFFFF"><table width="99%" height="510"  border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="tableBorder_gray">
+  <tr>
+    <td height="510" valign="top" style="padding:5px;"><table width="98%" height="487"  border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td height="22" valign="top" class="word_orange">当前位置：图示信息添加 &gt;&gt;&gt;</td>
+      </tr>
+      <tr>
+        <td align="center" valign="top">
+ <table width="100%"  border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="84%">&nbsp;      </td>
+</tr>
+</table>  <form name="form1" method="post" action="/book_add/">
+            {% csrf_token %}
+
+  <table width="58%"  border="0" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolordark="#D2E3E6" bordercolorlight="#FFFFFF">
+   
+
+
+
+      <tr align="center">
+    <td width="20%" align="left" style="padding:5px;">图书条形码：</td>
+    <td width="80%" align="left">
+      <input name="bookid" type="text" id="bookid" value="" size="30">
+
+    </td>
+    <tr>
+    <td align="left" style="padding:5px;">图书名称：</td>
+    <td align="left"><input name="bookname" type="text" id="bookname" size="30" value="" ></td>
+    </tr>
+    <tr>
+    <td align="left" style="padding:5px;">图书类型：</td>
+    <td align="left"><select name="booktype" >
+        {% for bt in booktype_list %}
+            <option value="{{ bt.booktype_id }}">{{ bt.book_type }}</option>
+        {% endfor %}
+
+
+    </select></td>
+    </tr>
+    <tr>
+      <td align="left" style="padding:5px;">出版社：</td>
+      <td align="left"><input name="bookp" type="text" id="bookp" size="30" value=""></td>
+    </tr>
+    <tr>
+      <td align="left" style="padding:5px;">书架：</td>
+      <td align="left"><select name="bookstore">
+          {% for bs in bookstore_list %}
+            <option value="{{ bs.store_id }}">{{ bs.store_name }}</option>
+          {% endfor %}
+
+
+      </select></td>
+    </tr>
+    <tr>
+      <td align="left" style="padding:5px;">作者：</td>
+      <td align="left"><input name="bookauthor" type="text" id="bookauthor" size="30" value=""></td>
+    </tr>
+    <tr>
+      <td align="left" style="padding:5px;">价格：</td>
+      <td align="left"><input name="bookprice" type="text" id="bookprice" size="30" value=""></td>
+    </tr>
+    <tr>
+      <td align="left" style="padding:5px;">库存：</td>
+      <td align="left"><input name="booknum" type="text" id="booknum" size="30" value=""></td>
+    </tr>
+     
+
+    <tr>
+      <td height="65" align="left" style="padding:5px;">&nbsp;</td>
+      <td><input name="Submit" type="submit" class="btn_grey" value="保存" onClick="return checkForm(form1)">
+        &nbsp;
+        <input name="Submit2" type="reset" class="btn_grey" value="取消"></td>
+    </tr>
+</table>
+</form><td>
+      </tr>
+    </table>
+</td>
+  </tr>
+</table>
+    </table>
+{% endblock table %}

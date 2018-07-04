@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-
+from .settings import DEBUG,MEDIA_ROOT
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('main.urls')),
     url(r'^lm/', include('main.urls')),
+    url(r'ckeditor/',include('ckeditor_uploader.urls'))
 ]
+
+from django.views.static import serve
+if DEBUG:
+    urlpatterns += url(r'^media/(?P<path>.*)/$',serve,{"document_root":MEDIA_ROOT}),

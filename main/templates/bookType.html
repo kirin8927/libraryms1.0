@@ -15,7 +15,7 @@
   <tr>
     <td width="82%">&nbsp;      </td>
 <td width="18%" align="right">
-      <a href="#" onClick="window.open('bookType_add.jsp','','width=292,height=175')">添加图书类型信息</a> </td>
+      <a href="/bookTypeAdd/" >添加图书类型信息</a> </td>
   </tr>
 </table>
   <table width="91%"  border="1" cellpadding="0" cellspacing="0" bordercolor="#FFFFFF" bordercolordark="#F6B83B" bordercolorlight="#FFFFFF">
@@ -25,27 +25,35 @@
     <td width="16%" bgcolor="#F9D16B">修改</td>
     <td width="14%" bgcolor="#F9D16B">删除</td>
   </tr>
+    {% for bt in bookTypelist %}
 
-  <tr>
-    <td style="padding:5px;">计算机类</td>
-    <td style="padding:5px;">30</td>
-    <td align="center"><a href="#" onClick="window.open('bookType.do?action=bookTypeModifyQuery&ID=1','','width=292,height=175')">修改</a></td>
-    <td align="center"><a href="bookType.do?action=bookTypeDel&ID=1">删除</a></td>
-  </tr>
-
-  <tr>
-    <td style="padding:5px;">文学类</td>
-    <td style="padding:5px;">35</td>
-    <td align="center"><a href="#" onClick="window.open('bookType.do?action=bookTypeModifyQuery&ID=3','','width=292,height=175')">修改</a></td>
-    <td align="center"><a href="bookType.do?action=bookTypeDel&ID=3">删除</a></td>
-  </tr>
-
-  <tr>
-    <td style="padding:5px;">建筑类</td>
-    <td style="padding:5px;">20</td>
-    <td align="center"><a href="#" onClick="window.open('bookType.do?action=bookTypeModifyQuery&ID=4','','width=292,height=175')">修改</a></td>
-    <td align="center"><a href="bookType.do?action=bookTypeDel&ID=4">删除</a></td>
-  </tr>
+          <tr>
+            <td style="padding:5px;">{{ bt.book_type }}</td>
+            <td style="padding:5px;">{{ bt.borrow_days }}</td>
+            <td align="center"><a href="#" onClick="window.open('bookType.do?action=bookTypeModifyQuery&ID=1','','width=292,height=175')">修改</a></td>
+            <td align="center"><a href="bookType.do?action=bookTypeDel&ID=1">删除</a></td>
+          </tr>
+      {% endfor %}
+{#  <tr>#}
+{#    <td style="padding:5px;">计算机类</td>#}
+{#    <td style="padding:5px;">30</td>#}
+{#    <td align="center"><a href="#" onClick="window.open('bookType.do?action=bookTypeModifyQuery&ID=1','','width=292,height=175')">修改</a></td>#}
+{#    <td align="center"><a href="bookType.do?action=bookTypeDel&ID=1">删除</a></td>#}
+{#  </tr>#}
+{##}
+{#  <tr>#}
+{#    <td style="padding:5px;">文学类</td>#}
+{#    <td style="padding:5px;">35</td>#}
+{#    <td align="center"><a href="#" onClick="window.open('bookType.do?action=bookTypeModifyQuery&ID=3','','width=292,height=175')">修改</a></td>#}
+{#    <td align="center"><a href="bookType.do?action=bookTypeDel&ID=3">删除</a></td>#}
+{#  </tr>#}
+{##}
+{#  <tr>#}
+{#    <td style="padding:5px;">建筑类</td>#}
+{#    <td style="padding:5px;">20</td>#}
+{#    <td align="center"><a href="#" onClick="window.open('bookType.do?action=bookTypeModifyQuery&ID=4','','width=292,height=175')">修改</a></td>#}
+{#    <td align="center"><a href="bookType.do?action=bookTypeDel&ID=4">删除</a></td>#}
+{#  </tr>#}
 
 </table></td>
       </tr>
